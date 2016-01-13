@@ -7,6 +7,12 @@ class LiquorstoresController < ApplicationController
     @hash = Gmaps4rails.build_markers(@liquorstores) do |liquorstore, marker|
       marker.lat liquorstore.latitude
       marker.lng liquorstore.longitude
+      liquorstore_path = view_context.link_to liquorstore.name.capitalize, liquorstore_path(liquorstore)
+      marker.infowindow "<b>Botilleria #{liquorstore_path}</b>"+
+      "</br>"+
+      "#{liquorstore.address}"+   
+      "</br>"+
+      "<b>Horario:</b>  #{liquorstore.openh.strftime("%H:%M") }" + " / " "  #{liquorstore.closeh.strftime("%H:%M")}"
     end
   end
 

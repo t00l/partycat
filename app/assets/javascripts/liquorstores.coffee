@@ -7,7 +7,7 @@ root.Liquorstore = ( ->
 			gmaps_liquorstore_show(data)		
 
 	gmaps_liquorstore_index = (data) ->
-		handler = Gmaps.build('Google')
+		handler = Gmaps.build('Google') 
 		handler.buildMap {
 		  provider: {}
 		  internal: id: 'map'
