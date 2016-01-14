@@ -29,15 +29,17 @@
     <%= f.label "Longitud" %>
     <%= f.text_field :longitude%>  
   </div>
+  
+  <div style="position: relative">
+    <div class="form-group">
+      <%= f.label "Hora Apertura" %>
+      <%= f.text_field :openh, class: 'datetime' %>  
+    </div>
 
-  <div class="form-group">
-    <%= f.label "Hora Apertura" %>
-    <%= f.text_field :openh%>  
-  </div>
-
-  <div class="form-group">
-    <%= f.label "Hora Cierre" %>
-    <%= f.text_field :closeh%>  
+    <div class="form-group">
+      <%= f.label "Hora Cierre" %>
+      <%= f.text_field :closeh, class: 'datetime' %>  
+    </div>
   </div>
 
   <div class="actions">
@@ -45,3 +47,5 @@
   </div>
 
 <% end %>
+
+<script>  $(function(){ Utilities.calendar();});</script>

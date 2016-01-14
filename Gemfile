@@ -23,7 +23,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'ratyrate'
 gem 'omniauth-facebook'
 gem 'friendly_id', '~> 5.1.0'
@@ -37,7 +37,8 @@ gem 'will_paginate', '~> 3.0.6'
 gem 'paperclip'
 gem 'bootstrap-sass','3.3.6'
 gem 'pundit'
-gem 'bootstrap-datetimepicker-rails'
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.14.30'
 gem 'sweet-alert'
 gem 'sweet-alert-confirm'
 gem 'will_paginate-bootstrap'
@@ -45,8 +46,6 @@ gem 'awesome_print', :require => 'ap'
 
 
 # Use Unicorn as the app server
-# gem 'unicorn'
-
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
