@@ -14,13 +14,23 @@ root.Liquorstore = ( ->
 		  internal: id: 'map'
 		}, ->
 		  markers = handler.addMarkers(data);
-		  handler.bounds.extendWith markers
-		  handler.fitMapToBounds()
+	  
 		  if navigator.geolocation
 		    navigator.geolocation.getCurrentPosition displayOnMap
 		  else
 		    navigator.geolocation.getCurrentPosition displayOnMapError		  
-		  return		 
+		  return	
+		  	 
+	gmaps_liquorstore_show = (data) ->
+		handler = Gmaps.build('Google')
+		handler.buildMap {
+		  provider: {}
+		  internal: id: 'map'
+		}, ->
+		  markers = handler.addMarkers(data);
+		  handler.bounds.extendWith markers
+		  handler.fitMapToBounds()
+		  return
 
 	displayOnMap = (position) ->
 	  marker2 = handler.addMarker(
@@ -28,11 +38,13 @@ root.Liquorstore = ( ->
 	    lng: position.coords.longitude
 	    picture:
 	      url: 'http://www.petgroomerforums.com/chat/images/icons/grin_cat.png'
-	      width: 36
-	      height: 36
+	      width: 34
+	      height: 34
 	    infowindow: 'usuario')
 	  handler.map.centerOn marker2
-	  handler.getMap().setZoom 17
+	  handler.getMap().setZoom 16
+	  handler.bounds.extendWith markers
+	  handler.fitMapToBounds()	
 	  return
 
 	displayOnMapError = (position, handler) ->
@@ -45,18 +57,10 @@ root.Liquorstore = ( ->
 	      height: 36)
 	  handler.map.centerOn marker2
 	  handler.getMap().setZoom 15
+	  handler.bounds.extendWith markers
+	  handler.fitMapToBounds()	
 	  return
 
-	gmaps_liquorstore_show = (data) ->
-		handler = Gmaps.build('Google')
-		handler.buildMap {
-		  provider: {}
-		  internal: id: 'map'
-		}, ->
-		  markers = handler.addMarkers(data);
-		  handler.bounds.extendWith markers
-		  handler.fitMapToBounds()
-		  return
 
 
 	{init: init}
