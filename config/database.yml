@@ -1,11 +1,12 @@
-development: &development
+ development:
   adapter: postgresql
+  encoding: utf8
   database: admin
   username: tool
   password: 123456
-  host:     localhost
-  schema_search_path: public
-  min_messages: warning
+  host: localhost # not mandatory
+  pool: 5 # not mandatory
+  timeout: 5000 # not mandatory
 
 test:
   <<: *development
