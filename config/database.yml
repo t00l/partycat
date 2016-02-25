@@ -1,7 +1,7 @@
 development: &development
   adapter: postgresql
   database: admin
-  username: admin
+  username: tool
   password: 123456
   host:     localhost
   schema_search_path: public
