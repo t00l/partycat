@@ -18,6 +18,8 @@ class LiquorstoresController < ApplicationController
   def show
     #@comment = @liquorstore.comments    
     @liquorstores = Liquorstore.near([@liquorstore.latitude, @liquorstore.longitude], 5)
+    @liquorstore.comments.build
+    @liquorstore.comments.build
     @hash = Gmaps4rails.build_markers(@liquorstores) do |liquorstore, marker|
     marker.lat liquorstore.latitude
     marker.lng liquorstore.longitude
