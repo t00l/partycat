@@ -5,5 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   #associations
   has_many :liquorstores
+  has_many :comments
 
 end
