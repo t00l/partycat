@@ -1,0 +1,17 @@
+ development:
+  adapter: postgresql
+  encoding: utf8
+  database: admin
+  username: tool
+  password: 123456
+  host: localhost # not mandatory
+  pool: 5 # not mandatory
+  timeout: 5000 # not mandatory
+
+test:
+  <<: *development
+  database: admin
+
+production:
+  <<: *development
+  database: admin
