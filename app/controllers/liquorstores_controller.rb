@@ -1,6 +1,6 @@
 class LiquorstoresController < ApplicationController
 
-  before_action :set_liquorstore, only: [:show, :edit]
+  before_action :set_liquorstore, only: [:show, :edit, :update]
 
   def index
     @liquorstores = Liquorstore.all
@@ -16,6 +16,7 @@ class LiquorstoresController < ApplicationController
   end
 
   def show
+    #@comment = @liquorstore.comments    
     @liquorstores = Liquorstore.near([@liquorstore.latitude, @liquorstore.longitude], 5)
     @hash = Gmaps4rails.build_markers(@liquorstores) do |liquorstore, marker|
     marker.lat liquorstore.latitude
@@ -43,6 +44,19 @@ class LiquorstoresController < ApplicationController
 
   end
 
+    def update
+      ap params
+    respond_to do |format|
+      if @liquorstore.update(liquostore_params)
+        format.html { redirect_to @liquorstore }
+        format.json { render :show, status: :ok, liquorstore: @liquorstore }
+      else
+        format.html { render :edit }
+        format.json { render json: @liquorstore.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
     def set_liquorstore
@@ -50,13 +64,14 @@ class LiquorstoresController < ApplicationController
     end
 
     def liquostore_params
-      params.require(:liquorstore).permit(:name, 
+      params.require(:liquorstore).permit(:id,:name, 
         :address, 
         :openh, 
         :closeh, 
         :latitude, 
         :longitude,
-        :user_id
+        :user_id,
+        comments_attributes:[:id,:liquorstore_id,:content]
         )
     end
 end

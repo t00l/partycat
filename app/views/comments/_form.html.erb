@@ -1,6 +1,6 @@
-<%= fields_for @comments do |c| %>
-		<p>
-			<%= c.label :content, "Contenido" %> <br />
-			<%= c.text_field :content %>
-		</p>
+<%= form_for @liquorstore do |liqco| %>
+	<%= liqco.fields_for :comments,liqco.object.comments.build, url: { action: "create" }  do |comen| %>
+		<%= comen.text_area :content, rows:3, cols:50 %><br />
+	<% end %>
+		<%= liqco.submit "Ingresar", class: "button round btn btn-primary" %>
 <% end %>

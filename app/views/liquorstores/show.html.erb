@@ -1,34 +1,32 @@
-<h1>Botillería <%=@liquorstore.name.capitalize%></h1>
+<div class="container">
+	<h1>Botillería <%=@liquorstore.name.capitalize%></h1>
 
-<div id='showmap' data-raw='<%=raw @hash.to_json %>' style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
+	<div id='showmap' data-raw='<%=raw @hash.to_json %>' style='width: 800px;'>
+	  <div id="map" style='width: 800px; height: 400px;'></div>
+	</div>
 
-<table class="table table-hover">
-  <thead>
-		<tr>
-			<th>Nombre</th>
-			<th>Dirección</th>
-			<th>Apertura</th>
-			<th>Cierre</th>
-		</tr>  	
-  </thead>
-  <tbody>
-		<tr>
-			<th><%=@liquorstore.name.capitalize%></th>
-			<th><%=@liquorstore.address%></th>
-			<th><%=@liquorstore.openh.strftime("%I:%M %p")%></th>
-			<th><%=@liquorstore.closeh.strftime("%I:%M %p")%></th>
-		</tr>  	
-  </tbody>  
-</table>
+	<table class="table table-hover">
+	  <thead>
+			<tr>
+				<th>Nombre</th>
+				<th>Dirección</th>
+				<th>Apertura</th>
+				<th>Cierre</th>
+			</tr>  	
+	  </thead>
+	  <tbody>
+			<tr>
+				<th><%=@liquorstore.name.capitalize%></th>
+				<th><%=@liquorstore.address%></th>
+				<th><%=@liquorstore.openh.strftime("%I:%M %p")%></th>
+				<th><%=@liquorstore.closeh.strftime("%I:%M %p")%></th>
+			</tr>  	
+	  </tbody>  
+	</table>
 
-<%= fields_for :comments do |c| %>
-		<p>
-			<%= c.label :content, "Contenido" %> <br />
-			<%= c.text_field :content %>
-		</p>
-<% end %>
+	<h5><b>Agregar Comentario:</b> </h5>
+		<%= render partial: "comments/form" %>
+	</div>
 
 <script>
 	$(function(){ Liquorstore.init('show',$('#showmap').data('raw'));});

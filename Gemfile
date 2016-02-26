@@ -45,6 +45,8 @@ gem 'will_paginate-bootstrap'
 gem 'awesome_print', :require => 'ap'
 
 
+
+
 # Use Unicorn as the app server
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -53,6 +55,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem "better_errors"
+  gem 'quiet_assets'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
