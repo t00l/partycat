@@ -1,0 +1,6 @@
+<%= fields_for @comments do |c| %>
+		<p>
+			<%= c.label :content, "Contenido" %> <br />
+			<%= c.text_field :content %>
+		</p>
+<% end %>

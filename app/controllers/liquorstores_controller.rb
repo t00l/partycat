@@ -43,6 +43,8 @@ class LiquorstoresController < ApplicationController
 
   end
 
+  private
+
     def set_liquorstore
       @liquorstore = Liquorstore.find(params[:id])
     end
