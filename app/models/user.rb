@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+
   ratyrate_rater
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -7,6 +7,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   #associations
   has_many :liquorstores
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
 end

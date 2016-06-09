@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
   post '/rate' => 'rater#create', :as => 'rate'
-resources :liquorstores
-  
+  resources :liquorstores do
+    resources :comments
+  end
+
   get 'liquorstores/new'
 
   devise_for :users, controllers: { sessions: "users/sessions" }
@@ -11,5 +13,5 @@ resources :liquorstores
 
   # You can have the root of your site routed with "root"
   root to: redirect("/users/sign_up")
-  
+
 end

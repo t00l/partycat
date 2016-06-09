@@ -5,7 +5,7 @@
 			<h1>Botillería <%=@liquorstore.name.capitalize%></h1>
 	  </div>
 	  <div class="col-md-4" end>
-	  	<b><%= rating_for @liquorstore, "grade", disable_after_rate: true, imdb_avg: true %></b> 
+	  	<b><%= rating_for @liquorstore, "grade", disable_after_rate: false, imdb_avg: true %></b>
 	  </div>
 	</div>
 
@@ -20,7 +20,7 @@
 					<th>Dirección</th>
 					<th>Apertura</th>
 					<th>Cierre</th>
-				</tr>  	
+				</tr>
 		  </thead>
 		  <tbody>
 				<tr>
@@ -28,13 +28,41 @@
 					<th><%=@liquorstore.address%></th>
 					<th><%=@liquorstore.openh.strftime("%I:%M %p")%></th>
 					<th><%=@liquorstore.closeh.strftime("%I:%M %p")%></th>
-				</tr>  	
-		  </tbody>  
+				</tr>
+		  </tbody>
 		</table>
-
-		<h5><b>Agregar Comentario:</b> </h5>
-			<%= render partial: "comments/form" %>
+		<div class="row">
+		  <div class="col-md-4">
+				<h5><b>Agregar Comentario:</b> </h5>
+				<%= render partial: "comments/form" %>
+			</div>
+		  <div class="col-md-8">
+				<table class="table table-hover">
+					<% @liquorstore.comments.each do |a| %>
+						<% unless a.id.nil?  %>
+							<thead>
+								<% if a.user.name.nil? %>
+									<tr>
+										<th><%= a.user.email %></th>
+									</tr>
+								<% else %>
+									<tr>
+										<th><%= a.user.name %></th>
+									</tr>
+								<% end %>
+							</thead>
+							<tbody>
+								<tr>
+									<th><%= a.content %></th>
+								</tr>
+							</tbody>
+						<% end %>
+					<% end %>
+				</table>
+			</div>
+		</div>
 	</div>
+</div>
 
 <script>
 	$(function(){ Liquorstore.init('show',$('#showmap').data('raw'));});

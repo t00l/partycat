@@ -28,6 +28,11 @@ class LiquorstoresController < ApplicationController
       marker.lat liquorstore.latitude
       marker.lng liquorstore.longitude
       marker.infowindow render_to_string(:partial => "liquorstores/infowindows", :locals => {liquorstore: liquorstore, liquorstore_path: liquorstore_path})
+      marker.picture({
+        "url" => view_context.image_path("http://fermentedgrape.ca/images/beer-icon-black.png"),
+        "width" => 32,
+        "height" => 37
+      })
     end
   end
 
@@ -52,17 +57,16 @@ class LiquorstoresController < ApplicationController
   end
 
     def update
-      ap params
-    respond_to do |format|
-      if @liquorstore.update(liquostore_params)
-        format.html { redirect_to @liquorstore }
-        format.json { render :show, status: :ok, liquorstore: @liquorstore }
-      else
-        format.html { render :edit }
-        format.json { render json: @liquorstore.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @liquorstore.update(liquostore_params)
+          format.html { redirect_to @liquorstore }
+          format.json { render :show, status: :ok, liquorstore: @liquorstore }
+        else
+          format.html { render :edit }
+          format.json { render json: @liquorstore.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
   private
 
@@ -78,7 +82,7 @@ class LiquorstoresController < ApplicationController
         :latitude,
         :longitude,
         :user_id,
-        comments_attributes:[:id,:liquorstore_id,:content]
+        comments_attributes:[:id,:user_id,:liquorstore_id,:content]
         )
     end
 end

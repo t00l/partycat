@@ -1,6 +1,6 @@
 
-<b>Botilleria <%=liquorstore.name%></b>
+<b>Botilleria <%= link_to "#{liquorstore.name.capitalize}", liquorstore_path(liquorstore) %></b>
 </br>
- <%=liquorstore.address%>   
+ <%=liquorstore.address%>
 </br>
 <b>Horario:</b> <%=liquorstore.openh.strftime("%H:%M")%> / <%=liquorstore.closeh.strftime("%H:%M")%>
