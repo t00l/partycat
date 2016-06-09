@@ -5,22 +5,22 @@ root.Liquorstore = ( ->
 		if page == 'index'
 			gmaps_liquorstore_index(data)
 		if page == 'show'
-			gmaps_liquorstore_show(data)		
+			gmaps_liquorstore_show(data)
 
 	gmaps_liquorstore_index = (data) ->
-		handler = Gmaps.build('Google') 
+		handler = Gmaps.build('Google')
 		handler.buildMap {
 		  provider: {}
 		  internal: id: 'map'
 		}, ->
 		  markers = handler.addMarkers(data);
-	  
+
 		  if navigator.geolocation
 		    navigator.geolocation.getCurrentPosition displayOnMap
 		  else
-		    navigator.geolocation.getCurrentPosition displayOnMapError		  
-		  return	
-		  	 
+		    navigator.geolocation.getCurrentPosition displayOnMapError
+		  return
+
 	gmaps_liquorstore_show = (data) ->
 		handler = Gmaps.build('Google')
 		handler.buildMap {
@@ -44,7 +44,7 @@ root.Liquorstore = ( ->
 	  handler.map.centerOn marker2
 	  handler.getMap().setZoom 16
 	  handler.bounds.extendWith markers
-	  handler.fitMapToBounds()	
+	  handler.fitMapToBounds()
 	  return
 
 	displayOnMapError = (position, handler) ->
@@ -58,7 +58,7 @@ root.Liquorstore = ( ->
 	  handler.map.centerOn marker2
 	  handler.getMap().setZoom 15
 	  handler.bounds.extendWith markers
-	  handler.fitMapToBounds()	
+	  handler.fitMapToBounds()
 	  return
 
 

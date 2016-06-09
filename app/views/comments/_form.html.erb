@@ -1,3 +1,5 @@
+ Nota: <%= rating_for @liquorstore, "grade" , :enable_half => true %>
+
 <%= form_for @liquorstore do |liqco| %>
 	<%= liqco.fields_for :comments,liqco.object.comments.build, url: { action: "create" }  do |comen| %>
 		<%= comen.text_area :content, rows:3, cols:50 %><br />

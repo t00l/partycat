@@ -6,9 +6,14 @@ class LiquorstoresController < ApplicationController
     @liquorstores = Liquorstore.all
     @hash = Gmaps4rails.build_markers(@liquorstores) do |liquorstore, marker|
       liquorstore_path = view_context.link_to liquorstore.name.capitalize, liquorstore_path(liquorstore)
-      marker.infowindow render_to_string(:partial => "liquorstores/infowindows", :locals => {liquorstore: liquorstore, liquorstore_path: liquorstore_path})  
+      marker.infowindow render_to_string(:partial => "liquorstores/infowindows", :locals => {liquorstore: liquorstore, liquorstore_path: liquorstore_path})
       marker.lat liquorstore.latitude
       marker.lng liquorstore.longitude
+      marker.picture({
+        "url" => view_context.image_path("http://fermentedgrape.ca/images/beer-icon-black.png"),
+        "width" => 32,
+        "height" => 37
+      })
     end
   end
 
@@ -16,14 +21,14 @@ class LiquorstoresController < ApplicationController
   end
 
   def show
-    #@comment = @liquorstore.comments    
+    #@comment = @liquorstore.comments
     @liquorstores = Liquorstore.near([@liquorstore.latitude, @liquorstore.longitude], 5)
     @liquorstore.comments.build
-    @liquorstore.comments.build
     @hash = Gmaps4rails.build_markers(@liquorstores) do |liquorstore, marker|
-    marker.lat liquorstore.latitude
-    marker.lng liquorstore.longitude
-    end    
+      marker.lat liquorstore.latitude
+      marker.lng liquorstore.longitude
+      marker.infowindow render_to_string(:partial => "liquorstores/infowindows", :locals => {liquorstore: liquorstore, liquorstore_path: liquorstore_path})
+    end
   end
 
   def new
@@ -32,7 +37,7 @@ class LiquorstoresController < ApplicationController
 
   def create
     @liquorstore = current_user.liquorstores.build(liquostore_params)
-    @liquorstore.user = current_user    
+    @liquorstore.user = current_user
 
     respond_to do |format|
       if @liquorstore.save
@@ -66,11 +71,11 @@ class LiquorstoresController < ApplicationController
     end
 
     def liquostore_params
-      params.require(:liquorstore).permit(:id,:name, 
-        :address, 
-        :openh, 
-        :closeh, 
-        :latitude, 
+      params.require(:liquorstore).permit(:id,:name,
+        :address,
+        :openh,
+        :closeh,
+        :latitude,
         :longitude,
         :user_id,
         comments_attributes:[:id,:liquorstore_id,:content]

@@ -1,31 +1,39 @@
 <div class="container">
-	<h1>Botillería <%=@liquorstore.name.capitalize%></h1>
 
-	<div id='showmap' data-raw='<%=raw @hash.to_json %>' style='width: 800px;'>
-	  <div id="map" style='width: 800px; height: 400px;'></div>
+	<div class="row">
+	  <div class="col-md-4">
+			<h1>Botillería <%=@liquorstore.name.capitalize%></h1>
+	  </div>
+	  <div class="col-md-4" end>
+	  	<b><%= rating_for @liquorstore, "grade", disable_after_rate: true, imdb_avg: true %></b> 
+	  </div>
 	</div>
 
-	<table class="table table-hover">
-	  <thead>
-			<tr>
-				<th>Nombre</th>
-				<th>Dirección</th>
-				<th>Apertura</th>
-				<th>Cierre</th>
-			</tr>  	
-	  </thead>
-	  <tbody>
-			<tr>
-				<th><%=@liquorstore.name.capitalize%></th>
-				<th><%=@liquorstore.address%></th>
-				<th><%=@liquorstore.openh.strftime("%I:%M %p")%></th>
-				<th><%=@liquorstore.closeh.strftime("%I:%M %p")%></th>
-			</tr>  	
-	  </tbody>  
-	</table>
+		<div id='showmap' data-raw='<%=raw @hash.to_json %>' style='width: 800px;'>
+		  <div id="map" style='width: 1100px; height: 400px;'></div>
+		</div>
 
-	<h5><b>Agregar Comentario:</b> </h5>
-		<%= render partial: "comments/form" %>
+		<table class="table table-hover">
+		  <thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Dirección</th>
+					<th>Apertura</th>
+					<th>Cierre</th>
+				</tr>  	
+		  </thead>
+		  <tbody>
+				<tr>
+					<th><%=@liquorstore.name.capitalize%></th>
+					<th><%=@liquorstore.address%></th>
+					<th><%=@liquorstore.openh.strftime("%I:%M %p")%></th>
+					<th><%=@liquorstore.closeh.strftime("%I:%M %p")%></th>
+				</tr>  	
+		  </tbody>  
+		</table>
+
+		<h5><b>Agregar Comentario:</b> </h5>
+			<%= render partial: "comments/form" %>
 	</div>
 
 <script>

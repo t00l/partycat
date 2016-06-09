@@ -1,5 +1,8 @@
 class Liquorstore < ActiveRecord::Base
   
+  ratyrate_rateable "grade"
+
+
   geocoded_by :address
   reverse_geocoded_by :latitude, :longitude
 
